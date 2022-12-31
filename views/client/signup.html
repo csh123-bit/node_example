@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include "./layout/head.html" %}
+    </head>
+<body>
+    <div class="container">
+        <h2>회원가입</h2>
+        <form action="signup_proc" method="post">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="이메일을 입력해주세요." name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="name">이름:</label>
+            <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요." name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="password">비밀번호:</label>
+            <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요." name="password" required>
+          </div>
+          <div class="form-group">
+            <label for="password_check">비밀번호 확인:</label>
+            <input type="password" class="form-control" id="password_check" placeholder="비밀번호를 한번더 입력해주세요." name="password_check" required>
+          </div>
+          <div class="form-group">
+            <label for="address">주소:</label>
+            <input type="text" class="form-control" id="address" placeholder="주소를 입력해주세요." name="address">
+          </div>
+          <div class="form-group">
+            <label for="phone_number">전화번호:</label>
+            <input type="number" class="form-control" id="phone_number" placeholder="Enter password" name="phone_number">
+          </div>
+          <button type="submit" class="btn btn-success">회원가입</button>
+          <button type="submit" class="btn btn-warning">취소</button>
+        </form>
+      </div>
+</body>
+</html>
