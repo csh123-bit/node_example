@@ -9,6 +9,7 @@ var session = require('express-session');// db에 저장하던지 메모리에 �
 const FileStore = require('session-file-store')(session);
 
 // 미들웨어
+app.use("/static",express.static(__dirname + "/static"));
 
 app.use(
   session({
@@ -26,7 +27,6 @@ nunjucks.configure('views',{
   autoescape : true,
   express : app,
 });
-app.use("/static",express.static(__dirname + "/static"));
 
 app.use('/admin', admin);
 

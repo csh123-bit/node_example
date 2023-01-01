@@ -3,20 +3,8 @@ const router = express.Router();
 const knex = require('../../config/dbConn');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-var session = require('express-session');
-const app = express();
-const FileStore = require('session-file-store')(session);
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-
-app.use(
-    session({
-      secret: "keyboard cat",
-      resave: false,
-      saveUninitialized: true,
-      store : new FileStore()
-    })
-  );
 
 // 여기 path 사용해서 바꿔줘야함
 router.get('/', (req, res)=>{

@@ -9,4 +9,9 @@ router.get('/login', (req, res)=>{
     res.render('../views/admina/login.html');
 });
 
+router.get('/board', (req, res)=>{
+    res.render('../views/admin/board.html');
+});
+
+
 module.exports = router;
