@@ -3,15 +3,22 @@ const router = express.Router();
 const knex = require('../../config/dbConn');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-var session = require('express-session');// db에 저장하던지 메모리에 저장하던지 해서 처리해야함
+var session = require('express-session');
+const app = express();
+const FileStore = require('session-file-store')(session);
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-const saltRounds = 10;
-
+app.use(
+    session({
+      secret: "keyboard cat",
+      resave: false,
+      saveUninitialized: true,
+      store : new FileStore()
+    })
+  );
 
 // 여기 path 사용해서 바꿔줘야함
-
 router.get('/', (req, res)=>{
     res.render('../views/client/index.html');
 });
@@ -32,8 +39,18 @@ router.post('/login_proc', urlencodedParser, async (req, res)=>{
     if(data.length>0){
         const validPass = await bcrypt.compare(password, data[0].usr_password);
         if(validPass){
-            
-            res.status(200).json("로그인 되었습니다.");
+            if(req.session.usr_idx===undefined){//세션부분 다시 공부 및 수정
+                console.log(req.session);
+                req.session.usr_idx = data[0].usr_idx;
+                req.session.usr_level = data[0].usr_level;
+                req.session.usr_name = data[0].usr_name;
+                req.session.save(()=>{
+                    res.status(200).json("로그인 되었습니다.");
+                });
+            }else{
+                //console.log(req.session.usr_idx);
+                res.redirect('/');
+            }
         }else{
             res.status(200).json("비밀번호가 틀렸습니다.");
         }
