@@ -15,27 +15,25 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>게시판 이름</th>
+            <th>게시판 코드</th>
+            <th>게시판 스킨</th>
+            <th>게시판 생성일</th>
+            <th>수정</th>
+            <th>삭제</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-        </tr>
-        <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-        </tr>
-        <tr>
-            <td>July</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-        </tr>
+            {% for list in lists %}
+            <tr>
+                <td>{{list.bod_name}}</td>
+                <td>{{list.bod_code}}</td>
+                <td>{{list.bod_skin}}</td>
+                <td>{{list.bod_created_at}}</td>
+                <td><a href="">수정</a></td>
+                <td><a href="">삭제</a></td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
     <div class="d-flex">
