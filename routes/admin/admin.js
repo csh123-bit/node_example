@@ -13,5 +13,9 @@ router.get('/board', (req, res)=>{
     res.render('../views/admin/board.html');
 });
 
+router.get('/add_board', (req, res)=>{
+    res.render('../views/admin/addboard.html');
+});
+
 
 module.exports = router;
