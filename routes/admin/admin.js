@@ -36,20 +36,32 @@ router.post('/board_config', urlencodedParser, async (req, res)=>{
     var board_per_page = req.body.board_page;
     var board_name = req.body.board_name;
 
-    var isSuccess = await knex('board_config')
-    .insert({bod_code : board_code,
-            bod_skin : board_skin,
-            bod_per_page : board_per_page,
-            bod_name : board_name,
-            bod_created_at : new Date()}, ['bod_idx']);
-
-    console.log(isSuccess[0]);
-    if(isSuccess[0].bod_idx>0){
-        res.status(200).json("저장 되었습니다.");
-    }else{
-        res.status(200).json("저장실패.");
-    }
-
+    knex.schema.hasTable('board_data_'+board_code).then(function(exists) {
+        if (!exists) {
+          return knex.schema.createTable('board_data_'+board_code, function(t) {
+            t.increments('id').primary();
+            t.string('first_name', 100);
+            t.string('last_name', 100);
+            t.text('bio');
+          }).then(async function(){
+            var isSuccess = await knex('board_config')
+            .insert({bod_code : board_code,
+                    bod_skin : board_skin,
+                    bod_per_page : board_per_page,
+                    bod_name : board_name,
+                    bod_created_at : new Date()}, ['bod_idx']);
+        
+            console.log(isSuccess[0]);
+            if(isSuccess[0].bod_idx>0){
+                res.status(200).json("저장 되었습니다.");
+            }else{
+                res.status(200).json("저장실패.");
+            }
+          });
+        }else{
+            res.status(200).json("이미 존재하는 게시판 입니다.");
+        }
+    });    
 });
 
 router.post('/board_config/:idx', urlencodedParser, async (req, res)=>{

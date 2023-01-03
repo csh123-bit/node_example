@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const admin = require('./routes/admin/admin.js');
 const client = require('./routes/client/client.js');
+const board = require('./routes/client/board.js');
 const nunjucks = require('nunjucks');
 const knex = require('./config/dbConn');
 var session = require('express-session');// db에 저장하던지 메모리에 저장하던지 해서 처리해야함
@@ -31,6 +32,8 @@ nunjucks.configure('views',{
 app.use('/admin', admin);
 
 app.use('/main', client);
+
+app.use('/board', board);
 
 app.get('/', (req, res) => {
     res.redirect('/main');
