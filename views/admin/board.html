@@ -26,12 +26,12 @@
         <tbody>
             {% for list in lists %}
             <tr>
-                <td>{{list.bod_name}}</td>
-                <td>{{list.bod_code}}</td>
-                <td>{{list.bod_skin}}</td>
-                <td>{{list.bod_created_at}}</td>
-                <td><a href="/admin/add_board/{{list.bod_idx}}">수정</a></td>
-                <td><a href="/admin/add_board_delete/{{list.bod_idx}}">삭제</a></td>
+                <td>{{list.boc_name}}</td>
+                <td>{{list.boc_code}}</td>
+                <td>{{list.boc_skin}}</td>
+                <td>{{list.boc_created_at}}</td>
+                <td><a href="/admin/add_board/{{list.boc_idx}}">수정</a></td>
+                <td><a href="/admin/add_board_delete/{{list.boc_idx}}">삭제</a></td>
             </tr>
             {% endfor %}
         </tbody>

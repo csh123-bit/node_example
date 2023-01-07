@@ -8,8 +8,14 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.get('/:code', urlencodedParser, async (req, res)=>{
     var code = req.params.code;
+
+    var boardData = await knex('board_data_'+code).select();
+    var boardConfig = await knex('board_config').where({'boc_code':code});
+
+    console.log(boardData);
+    console.log(boardConfig);
     console.log(code);
-    res.sendStatus(200);
+    res.render('../views/client/board/board.html', {boardData:boardData, boardConfig:boardConfig[0]});
 });
 
 module.exports = router;

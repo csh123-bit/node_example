@@ -4,36 +4,36 @@
 <div class="container p-3 my-3 border ">
     <h3>게시판 설정</h3>
     <br>
-    <form action="/admin/board_config/{% if result %}{{result.bod_idx}}{% endif %}" method="post">
+    <form action="/admin/board_config/{% if result %}{{result.boc_idx}}{% endif %}" method="post">
         <div class="row">
             <div class="container p-3 my-3 border col-6">
                 <div class="form-group">
                     <label for="board_code">게시판 코드</label>
-                    <input id="board_code" value="{% if result %}{{result.bod_code}}{% endif %}" name="board_code" type="text" style="width: 400px;" class="form-control" placeholder="게시판 코드를 입력해 주세요.">
+                    <input id="board_code" value="{% if result %}{{result.boc_code}}{% endif %}" name="board_code" type="text" style="width: 400px;" class="form-control" placeholder="게시판 코드를 입력해 주세요.">
                 </div>
                 <div class="form-group">
                     <label for="board_name">게시판 이름</label>
-                    <input id="board_name" value="{% if result %}{{result.bod_name}}{% endif %}" name="board_name" type="text" style="width: 400px;" class="form-control" placeholder="게시판 이름을 입력해 주세요.">
+                    <input id="board_name" value="{% if result %}{{result.boc_name}}{% endif %}" name="board_name" type="text" style="width: 400px;" class="form-control" placeholder="게시판 이름을 입력해 주세요.">
                 </div>
                 <div class="form-group mt-2">
                     <label for="board_skin">게시판 스킨</label>
                     <select class="form-control" style="width: 400px;" name="board_skin" id="board_skin">
-                        <option value="notice1" {% if result.bod_skin=='notice1' %}selected{% endif %}>공지 게시판</option>
-                        <option value="normal1" {% if result.bod_skin=='normal1' %}selected{% endif %}>일반 게시판</option>
-                        <option value="gallery1" {% if result.bod_skin=='gallery1' %}selected{% endif %}>갤러리 게시판</option>
+                        <option value="notice1" {% if result.boc_skin=='notice1' %}selected{% endif %}>공지 게시판</option>
+                        <option value="normal1" {% if result.boc_skin=='normal1' %}selected{% endif %}>일반 게시판</option>
+                        <option value="gallery1" {% if result.boc_skin=='gallery1' %}selected{% endif %}>갤러리 게시판</option>
                     </select>
                 </div>
                 <div class="form-group mt-2">
                     <label for="board_page">노출 페이지 설정</label>
                     <select class="form-control" style="width: 400px;" name="board_page" id="board_page">
-                        <option value="5" {% if result.bod_per_page==5 %}selected{% endif %}>5</option>
-                        <option value="10" {% if result.bod_per_page==10 %}selected{% endif %}>10</option>
-                        <option value="15" {% if result.bod_per_page==15 %}selected{% endif %}>15</option>
-                        <option value="20" {% if result.bod_per_page==20 %}selected{% endif %}>20</option>
-                        <option value="3" {% if result.bod_per_page==3 %}selected{% endif %}>3</option>
-                        <option value="6" {% if result.bod_per_page==6 %}selected{% endif %}>6</option>
-                        <option value="9" {% if result.bod_per_page==9 %}selected{% endif %}>9</option>
-                        <option value="12" {% if result.bod_per_page==12 %}selected{% endif %}>12</option>
+                        <option value="5" {% if result.boc_per_page==5 %}selected{% endif %}>5</option>
+                        <option value="10" {% if result.boc_per_page==10 %}selected{% endif %}>10</option>
+                        <option value="15" {% if result.boc_per_page==15 %}selected{% endif %}>15</option>
+                        <option value="20" {% if result.boc_per_page==20 %}selected{% endif %}>20</option>
+                        <option value="3" {% if result.boc_per_page==3 %}selected{% endif %}>3</option>
+                        <option value="6" {% if result.boc_per_page==6 %}selected{% endif %}>6</option>
+                        <option value="9" {% if result.boc_per_page==9 %}selected{% endif %}>9</option>
+                        <option value="12" {% if result.boc_per_page==12 %}selected{% endif %}>12</option>
                     </select>
                 </div>
             </div>
