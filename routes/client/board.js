@@ -15,7 +15,7 @@ router.get('/:code', urlencodedParser, async (req, res)=>{
     console.log(boardData);
     console.log(boardConfig);
     console.log(code);
-    res.render('../views/client/board/board.html', {boardData:boardData, boardConfig:boardConfig[0]});
+    res.render('../views/client/board/normal1/board.html', {boardData:boardData, boardConfig:boardConfig[0]});
 });
 
 module.exports = router;
