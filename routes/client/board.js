@@ -18,4 +18,10 @@ router.get('/:code', urlencodedParser, async (req, res)=>{
     res.render('../views/client/board/normal1/board.html', {boardData:boardData, boardConfig:boardConfig[0]});
 });
 
+router.get('/:code/write', urlencodedParser, async (req, res)=>{
+    var code = req.params.code;
+
+    res.render('../views/client/board/normal1/board.html', {boardData:boardData, boardConfig:boardConfig[0]});
+});
+
 module.exports = router;
