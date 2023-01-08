@@ -32,6 +32,7 @@ router.post('/login_proc', urlencodedParser, async (req, res)=>{
                 req.session.usr_idx = data[0].usr_idx;
                 req.session.usr_level = data[0].usr_level;
                 req.session.usr_name = data[0].usr_name;
+                req.session.usr_email = data[0].usr_email;
                 req.session.save(()=>{
                     res.status(200).json("로그인 되었습니다.");
                 });

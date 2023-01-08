@@ -18,8 +18,8 @@
                 {% for item in boardData %}
                 <tr>
                     <td>{{ item.bod_usr_name }}</td>
-                    <td>{{ item.bod_title }}</td>
-                    <td>{{ itme.bod_created_at }}</td>
+                    <td><a href="/board/{{ boardConfig.boc_code }}/read/{{ item.bod_idx }}">{{ item.bod_title }}</a></td>
+                    <td>{{ item.bod_created_at }}</td>
                 </tr>
                 {% else %}
                 <tr>
