@@ -31,11 +31,15 @@
         </table>
         <div class="container">
             <ul class="pagination" style="justify-content: center;">
+                {% if (boardData.current_page!=1)%}
                 <li class="page-item"><a class="page-link" href="#" onclick="pageChange('prev',{{boardData.current_page}})">Previous</a></li>
+                {% endif%}
                 {% for i in range(boardData.startPage,boardData.endPage+1) -%}
                 <li class="page-item {% if (boardData.current_page==i) %} active {% endif %}"><a class="page-link" href="#" onclick="pageChange('current',{{i}})">{{i}}</a></li>
                 {%- endfor %}
+                {% if (boardData.current_page!=boardData.last_page)%}
                 <li class="page-item"><a class="page-link" href="#" onclick="pageChange('next',{{boardData.current_page}})">Next</a></li>
+                {% endif%}
             </ul>
         </div>
         <div class="input-group">

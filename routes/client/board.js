@@ -64,6 +64,9 @@ router.get('/:code', urlencodedParser, async (req, res)=>{
         pagination.startPage = ((page - 1) / 10) * 10 + 1;
 
         pagination.endPage = pagination.startPage + 10 - 1;
+        if(pagination.endPage > pagination.last_page){
+            pagination.endPage = pagination.last_page;
+        }
 
         boardData_data = pagination;
 
