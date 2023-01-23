@@ -61,7 +61,7 @@ router.get('/:code', urlencodedParser, async (req, res)=>{
         pagination.from = offset;
         pagination.data = rows;
 
-        pagination.startPage = ((page - 1) / 10) * 10 + 1;
+        pagination.startPage = (Math.floor((page - 1) / 10)) * 10 + 1;
 
         pagination.endPage = pagination.startPage + 10 - 1;
         if(pagination.endPage > pagination.last_page){
@@ -69,8 +69,9 @@ router.get('/:code', urlencodedParser, async (req, res)=>{
         }
 
         boardData_data = pagination;
-
-        console.log(boardData_data);
+        console.log(boardData_data.startPage);
+        console.log(boardData_data.endPage)
+        //console.log(boardData_data);
 
         res.render('../views/client/board/normal1/board.html', {boardData:boardData_data, boardConfig:boardConfig[0]});
     });
