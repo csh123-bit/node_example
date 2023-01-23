@@ -5,8 +5,6 @@
 </head>
 <body>
     <div class="container">
-        글쓰기
-    
         <form class="mt-5" action="" method="post">
             <table style="width: 100%;">
                 <thead>
@@ -15,22 +13,25 @@
                             제목
                         </th>
                         <td>
-                            <input class="form-control" name="board_title" type="text" value="">
+                            <h5>{{ boardData.bod_title }}</h5>
                         </td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th>
-                            내용
+                            {{ boardData.bod_content }}
                         </th>
                         <td>
-                            <textarea class="form-control" name="board_content" id="" cols="30" rows="10"></textarea>
+                            <div></div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <input class="btn btn-success" style="float: right;" type="submit" value="글 작성">
+            <div>
+                <a href="" style="float: right;" class="btn btn-danger">삭제</a>
+                <a href="/board/{{ boardConfig.boc_code }}/edit/{{boardData.bod_idx}}" style="float: right; margin-right:3px;" class="btn btn-primary">수정</a>
+            </div>
         </form>
        
     </div>

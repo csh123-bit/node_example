@@ -10,6 +10,7 @@ var session = require('express-session');// db에 저장하던지 메모리에 �
 const FileStore = require('session-file-store')(session);
 
 // 미들웨어
+
 app.use("/static",express.static(__dirname + "/static"));
 
 app.use(
@@ -17,9 +18,9 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    store : new FileStore(),
+    store : new FileStore({logFn: function(){}}),//여기 오류 분석
     cookie: {
-      maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
+      maxAge: 1000 * 60 * 60 // 쿠키 유효기간 24시간
     }
   })
 );
@@ -29,11 +30,20 @@ nunjucks.configure('views',{
   express : app,
 });
 
+app.use(function(req, res, next){
+  if(req.session.user){
+    res.locals.user = req.session.user;
+  }
+  next();
+});
+
 app.use('/admin', admin);
 
 app.use('/main', client);
 
 app.use('/board', board);
+
+
 
 app.get('/', (req, res) => {
     res.redirect('/main');

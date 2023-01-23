@@ -4,21 +4,22 @@
     {% include "../../layout/head.html" %}
 </head>
 <body>
+    {% include "../../layout/navigation.html" %}
     <div class="container">
         <h2>{{ boardConfig.boc_name }}</h2>
         <table class="table table-hover">
             <thead>
-            <tr>
+            <tr style="text-align:center;">
                 <th>작성자</th>
                 <th>제목</th>
                 <th>작성일</th>
             </tr>
             </thead>
             <tbody>
-                {% for item in boardData %}
+                {% for item in boardData.data %}
                 <tr>
-                    <td>{{ item.bod_usr_name }}</td>
-                    <td><a href="/board/{{ boardConfig.boc_code }}/read/{{ item.bod_idx }}">{{ item.bod_title }}</a></td>
+                    <td style="width:15%;">{{ item.bod_usr_name }}</td>
+                    <td style="width:60%"><a href="/board/{{ boardConfig.boc_code }}/read/{{ item.bod_idx }}">{{ item.bod_title }}</a></td>
                     <td>{{ item.bod_created_at }}</td>
                 </tr>
                 {% else %}
@@ -28,10 +29,50 @@
                 {% endfor %}
             </tbody>
         </table>
+        <div class="container">
+            <ul class="pagination" style="justify-content: center;">
+                <li class="page-item"><a class="page-link" href="#" onclick="pageChange('prev',{{boardData.current_page}})">Previous</a></li>
+                {% for i in range(boardData.startPage,boardData.endPage+1) -%}
+                <li class="page-item {% if (boardData.current_page==i) %} active {% endif %}"><a class="page-link" href="#" onclick="pageChange('current',{{i}})">{{i}}</a></li>
+                {%- endfor %}
+                <li class="page-item"><a class="page-link" href="#" onclick="pageChange('next',{{boardData.current_page}})">Next</a></li>
+            </ul>
+        </div>
+        <div class="input-group">
+            <form method="get" style="display:flex;">
+                <select class="form-control" name="search_cond" style="flex: 1;" id="search-cond">
+                    <option value="writer">작성자</option>
+                    <option value="title">제목</option>
+                    <option value="content">내용</option>
+                </select>
+                <input class="form-control" name="search_word" style="flex: 1; width:210px" type="text" placeholder="검색어를 입력해 주세요.">
+                <button class="btn btn-primary" style="flex: 1; width:100px;">검색</button>
+            </form>
+        </div>
         <div style="float: right;">
             <a class="btn btn-success" href="{{ boardConfig.boc_code }}/write">글 작성</a>
         </div>
         
     </div>
 </body>
+<script>
+    function pageChange(pageInfo, currentPage){
+        const URLSearch = new URLSearchParams(location.search);
+
+        if(pageInfo=='prev'){
+            currentPage--;
+        }
+        if(pageInfo=='next'){
+            currentPage++;
+        }
+
+        console.log(currentPage);
+
+        URLSearch.set('current_page', currentPage);
+        const newParam = URLSearch.toString();
+
+        location.href = location.pathname + '?' + newParam;
+        
+    }
+</script>
 </html>
