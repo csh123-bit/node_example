@@ -107,5 +107,11 @@ router.get('/menu', (req, res)=>{
     res.render('../views/admin/menu.html');
 });
 
+router.get('/add_menu', (req, res)=>{
+    
+
+    res.render('../views/admin/addmenu.html');
+});
+
 
 module.exports = router;
