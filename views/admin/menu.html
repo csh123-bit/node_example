@@ -1,0 +1,33 @@
+{% extends "./layout/index.html" %}
+
+{% block index %}
+<div class="container p-3 my-3 border">
+    <h3>메뉴 관리</h3>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>메뉴 이름</th>
+            <th>메뉴 url</th>
+            <th>메뉴 스텝</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for list in lists %}
+            <tr>
+                <td>{{list.boc_name}}</td>
+                <td>{{list.boc_code}}</td>
+                <td>{{list.boc_skin}}</td>
+                <td><a href="/admin/add_board/{{list.boc_idx}}">수정</a></td>
+                <td><a href="/admin/add_board_delete/{{list.boc_idx}}">삭제</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="d-flex">
+        <a href="/admin/add_board" class="ml-auto btn btn-success">메뉴 추가</a>
+    </div>
+</div>
+{% endblock %}

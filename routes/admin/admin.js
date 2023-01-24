@@ -101,5 +101,11 @@ router.post('/board_config/:idx', urlencodedParser, async (req, res)=>{
 
 });
 
+router.get('/menu', (req, res)=>{
+    
+
+    res.render('../views/admin/menu.html');
+});
+
 
 module.exports = router;
